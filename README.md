@@ -1,5 +1,7 @@
 # Network Queueing Simulation
 
+![Network Topology](docs/topology.png)
+
 ## Introduction to Queueing Theory
 
 **Queueing theory** is the mathematical study of waiting lines, or queues. In many real-world systems—such as network routers handling packets, checkout lines in a supermarket, or support call centers—customers (or packets, tasks, requests) arrive to be processed by servers or resources. Queueing theory helps us understand system performance measures such as average waiting time, queue length, and utilization of servers.
@@ -68,3 +70,42 @@ Under **/notebooks**, the SimulationAnalysis notebook provides a worked example 
 - A generated topology diagram and 
 - Metrics from the simulation run
 - The output of the future event list, showing arrivals and departures in the system.
+
+### Example metrics
+```bash
+------------- Router Q0 -------------
+Packets Transmitted: 533
+Packets dropped ratio: 0.01097
+Packets dropped: 6
+Average Transmission time (ms): 0.00028
+------------- Router Q1 -------------
+Packets Transmitted: 727
+Packets dropped ratio: 0.11152
+Packets dropped: 92
+Average Transmission time (ms): 0.00047
+------------- Router Q2 -------------
+Packets Transmitted: 636
+Packets dropped ratio: 0.07101
+Packets dropped: 49
+Average Transmission time (ms): 0.00044
+------------- Router Q3 -------------
+Packets Transmitted: 623
+Packets dropped ratio: 0.13480
+Packets dropped: 98
+Average Transmission time (ms): 0.00058
+```
+
+### Example Future Event List
+
+```bash
+All Processed Events (including arrivals, departures, and drops):
+[Time=0.00000] POLLED: Arrival Event at 0.00000s, Destination Queue: 0, Origin: Source 0
+[Time=0.00000] SCHEDULED: Departure Event at 0.00000s, Destination Queue: 0, Origin: Router Q0
+[Time=0.00000] SCHEDULED: Arrival Event at 0.00000s, Destination Queue: 0, Origin: Source 0
+[Time=0.00003] SCHEDULED: Arrival Event at 0.00003s, Destination Queue: 3, Origin: Router Q1
+[Time=0.00003] POLLED: Arrival Event at 0.00003s, Destination Queue: 3, Origin: Router Q1
+[Time=0.00003] POLLED: Arrival Event at 0.00003s, Destination Queue: 0, Origin: Source 1
+[Time=0.00003] SCHEDULED: Departure Event at 0.00003s, Destination Queue: 0, Origin: Router Q0
+[Time=0.00003] SCHEDULED: Arrival Event at 0.00003s, Destination Queue: 0, Origin: Source 1
+[Time=0.00003] POLLED: Departure Event at 0.00003s, Destination Queue: 2, Origin: Router Q2
+```
